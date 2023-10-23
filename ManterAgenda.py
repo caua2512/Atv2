@@ -22,21 +22,21 @@ class ManterAgendaUI:
         df = pd.DataFrame(dic)
         st.dataframe(df)   
     def inserir():
-        date = st.text_input("Informe a data:")
+        data = st.text_input("Informe a data:")
         confirmado = st.text_input("Confirmado:")
-        id_cliente = st.text_input("Id do cliente:")        
-        id_servico = st.text_input("id do serviço")
+        id_cliente = st.selectbox('Selecione o Id do cliente que desejar',(View.cliente_listar()))       
+        id_servico = st.selectbox('Selecione o Id do serviço que desejar',(View.servico_listar()))
         if st.button("Inserir"):
-            View.agenda_inserir(date, confirmado, id_cliente, id_servico)
+            View.agenda_inserir(data, confirmado, id_cliente, id_servico)
     def atualizar():
         st.header("Atualizar")
         option = st.selectbox('Selecione a agenda que desejar atualizar',(View.agenda_listar()))
-        date = st.text_input("Informe a data:")
-        confirmado = st.text_input("informe o novo nome:")
-        id_cliente = st.text_input("informe o novo email:")
-        id_servico = st.text_input("informe o novo Telefone:")
+        data = st.text_input("Informe a nova data:")
+        confirmado = st.text_input("confirmado:")
+        id_cliente = st.selectbox('Selecione o Id do cliente que atualizar',(View.cliente_listar()))       
+        id_servico = st.selectbox('Selecione o Id do serviço que atualizar',(View.servico_listar()))
         if st.button("Atualizar"):
-            View.agenda_atualizar(option.get_id(), date, confirmado, id_cliente, id_servico)
+            View.agenda_atualizar(option.get_id(), data, confirmado, id_cliente, id_servico)
     def excluir():
             st.header("Excluir")
             option = st.selectbox('Selecione a Agenda que desejar exluir', (View.agenda_listar()))
